@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>YumChart Graph Display</title>
+
+</head>
+<body id="body">
+<div id="body-div">
+    <div id="body-div-nav">
+        <div id="body-div-nav-text-container">
+            <p class="nav-text">yumChart DEMO</p>
+        </div>
+    </div>
+    <div id="body-div-left">
+        <div id="body-div-left-top-graph-container">
+            <div id="graph-container">
+                <!-- YUMCHART INSTANCE GOES HERE -->
+            </div>
+        </div>
+        <div id="body-div-left-bottom-info-bar">
+            <div id="body-div-left-bottom-info-bar-text"><p id="current-graph">Current Graph: <span id="current-graph-text"></span></p></div>
+        </div>
+    </div>
+    <div id="body-div-right">
+        <div id="body-div-right-title"><p id="body-div-right-title-text">Graph Types</p></div>
+        <div id="body-div-right-button-wrapper">
+            <div class="button-container"><button class="graph-change-button" id="graph-polyline">Polyline</button><br /></div>
+            <div class="button-container"><button class="graph-change-button" id="graph-bar_horizon_sidebyside">Bar Horizontal Side By Side</button><br /></div>
+            <div class="button-container"><button class="graph-change-button" id="graph-bar_vertical_sidebyside">Bar Vertical Side By Side</button><br /></div>
+            <div class="button-container"><button class="graph-change-button" id="graph-bar_horizon_stack">Bar Horizontal Stack</button><br /></div>
+            <div class="button-container"><button class="graph-change-button" id="graph-bar_vertical_stack">Bar Vertical Stack</button><br /></div>
+            <div class="button-container"><button class="graph-change-button" id="graph-pie">Pie</button></div>
+        </div>
+    </div>
+</div>
+<link rel="stylesheet" href="./styles/displayGraph.css" />
+<script src="./scripts/jquery-3.1.0.min.js" type="text/javascript"></script>
+<script src="./scripts/echarts.min.js" type="text/javascript"></script>
+<script src="../yumChart.js" type="text/javascript"></script>
+<script src="./scripts/displayGraph.js" type="text/javascript"></script>
+<!--<script src="http://192.168.1.156:8081/target/target-script-min.js#anonymous"></script>-->
+</body>
+
+</html>

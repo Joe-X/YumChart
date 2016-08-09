@@ -1,0 +1,63 @@
+{
+  "doctype": "YumChartData",
+  "version": "1.0",
+  "chart": {
+    "type": "bar_vertical_stack",
+    "title": "最近4周销售额走势图",
+    "series": [
+      {
+        "seriesName": "本周", "data": [
+        {"x": 0, "y": 476, "labelx": "周一", "labely": "476"},
+        {"x": 1, "y": 589, "labelx": "周二", "labely": "589"},
+        {"x": 2, "y": 689, "labelx": "周三", "labely": "689"},
+        {"x": 3, "y": 793, "labelx": "周四", "labely": "793"},
+        {"x": 4, "y": 862, "labelx": "周五", "labely": "862"},
+        {"x": 5, "y": 1056, "labelx": "周六", "labely": "1056"},
+        {"x": 6, "y": 987, "labelx": "周日", "labely": "987"}]
+      },
+      {
+        "seriesName": "上周", "data": [
+        {"x": 0, "y": 652, "labelx": "周一", "labely": "652"},
+        {"x": 1, "y": 487, "labelx": "周二", "labely": "487"},
+        {"x": 2, "y": 712, "labelx": "周三", "labely": "712"},
+        {"x": 3, "y": 762, "labelx": "周四", "labely": "762"},
+        {"x": 4, "y": 846, "labelx": "周五", "labely": "846"},
+        {"x": 5, "y": 963, "labelx": "周六", "labely": "963"},
+        {"x": 6, "y": 1012, "labelx": "周日", "labely": "1012"}]
+      },
+      {
+        "seriesName": "上两周", "data": [
+        {"x": 0, "y": 1024, "labelx": "周一", "labely": "1024"},
+        {"x": 1, "y": 876, "labelx": "周二", "labely": "876"},
+        {"x": 2, "y": 678, "labelx": "周三", "labely": "678"},
+        {"x": 3, "y": 845, "labelx": "周四", "labely": "845"},
+        {"x": 4, "y": 946, "labelx": "周五", "labely": "946"},
+        {"x": 5, "y": 512, "labelx": "周六", "labely": "512"},
+        {"x": 6, "y": 486, "labelx": "周日", "labely": "486"}]
+      },
+      {
+        "seriesName": "上三周", "data": [
+        {"x": 0, "y": 864, "labelx": "周一", "labely": "864"},
+        {"x": 1, "y": 843, "labelx": "周二", "labely": "843"},
+        {"x": 2, "y": 879, "labelx": "周三", "labely": "879"},
+        {"x": 3, "y": 851, "labelx": "周四", "labely": "851"},
+        {"x": 4, "y": 799, "labelx": "周五", "labely": "799"},
+        {"x": 5, "y": 861, "labelx": "周六", "labely": "861"},
+        {"x": 6, "y": 873, "labelx": "周日", "labely": "873"}]
+      },
+      {
+        "seriesName": "上四周", "data": [
+        {"x": 0, "y": 1000, "labelx": "周一", "labely": "1000"},
+        {"x": 1, "y": 1234, "labelx": "周二", "labely": "1234"},
+        {"x": 2, "y": 999, "labelx": "周三", "labely": "999"},
+        {"x": 3, "y": 987, "labelx": "周四", "labely": "987"},
+        {"x": 4, "y": 965, "labelx": "周五", "labely": "965"},
+        {"x": 5, "y": 921, "labelx": "周六", "labely": "921"},
+        {"x": 6, "y": 810, "labelx": "周日", "labely": "810"}]
+      }
+    ],
+    "xtitle": "X",
+    "ytitle": "收入(单位:万元)",
+    "showLabel": true
+  }
+}

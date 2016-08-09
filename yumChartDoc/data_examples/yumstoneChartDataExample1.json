@@ -1,0 +1,65 @@
+{
+  "doctype": "YumChartData",
+  "version": "1.0",
+  "chart": {
+    "type": "bar_horizon_sidebyside",
+    "title": "最近4周销售额走势图",
+    "series": [
+      {
+        "seriesName": "本周", "data": [
+        {"x": 136, "y": 0, "labely": "周一", "labelx": "136"},
+        {"x": 116, "y": 1, "labely": "周二", "labelx": "116"},
+        {"x": 120, "y": 2, "labely": "周三", "labelx": "120"},
+        {"x": 103, "y": 3, "labely": "周四", "labelx": "103"},
+        {"x": 98, "y": 4, "labely": "周五", "labelx": "98"},
+        {"x": 112, "y": 5, "labely": "周六", "labelx": "112"},
+        {"x": 116, "y": 6, "labely": "周日", "labelx": "116"}]
+      },
+      {
+        "seriesName": "上周", "data": [
+        {"x": 58, "y": 0, "labely": "周一", "labelx": "58"},
+        {"x": 93, "y": 1, "labely": "周二", "labelx": "93"},
+        {"x": 96, "y": 2, "labely": "周三", "labelx": "96"},
+        {"x": 108, "y": 3, "labely": "周四", "labelx": "108"},
+        {"x": 115, "y": 4, "labely": "周五", "labelx": "115"},
+        {"x": 126, "y": 5, "labely": "周六", "labelx": "126"},
+        {"x": 139, "y": 6, "labely": "周日", "labelx": "139"}]
+      },
+      {
+        "seriesName": "上两周", "data": [
+        {"x": 78, "y": 0, "labely": "周一", "labelx": "78"},
+        {"x": 69, "y": 1, "labely": "周二", "labelx": "69"},
+        {"x": 83, "y": 2, "labely": "周三", "labelx": "83"},
+        {"x": 89, "y": 3, "labely": "周四", "labelx": "89"},
+        {"x": 96, "y": 4, "labely": "周五", "labelx": "96"},
+        {"x": 106, "y": 5, "labely": "周六", "labelx": "106"},
+        {"x": 102, "y": 6, "labely": "周日", "labelx": "102"}]
+      },
+      {
+        "seriesName": "上三周", "data": [
+        {"x": 112, "y": 0, "labely": "周一", "labelx": "112"},
+        {"x": 111, "y": 1, "labely": "周二", "labelx": "111"},
+        {"x": 106, "y": 2, "labely": "周三", "labelx": "106"},
+        {"x": 104, "y": 3, "labely": "周四", "labelx": "104"},
+        {"x": 97, "y": 4, "labely": "周五", "labelx": "97"},
+        {"x": 93, "y": 5, "labely": "周六", "labelx": "93"},
+        {"x": 86, "y": 6, "labely": "周日", "labelx": "86"}]
+      },
+      {
+        "seriesName": "上四周", "data": [
+        {"x": 56, "y": 0, "labely": "周一", "labelx": "56"},
+        {"x": 69, "y": 1, "labely": "周二", "labelx": "69"},
+        {"x": 53, "y": 2, "labely": "周三", "labelx": "53"},
+        {"x": 67, "y": 3, "labely": "周四", "labelx": "67"},
+        {"x": 79, "y": 4, "labely": "周五", "labelx": "79"},
+        {"x": 86, "y": 5, "labely": "周六", "labelx": "86"},
+        {"x": 72, "y": 6, "labely": "周日", "labelx": "72"}]
+      }
+    ],
+    "xtitle": "",
+    "ytitle": "收入(单位:万元)",
+    "showLabel": true
+  }
+}
+
+//上周 上两周 上三周 上四周

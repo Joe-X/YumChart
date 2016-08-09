@@ -1504,7 +1504,9 @@ YumStone.YumChart = (function (module) {
 YumStone.YumChart = (function (module) {
     // TODO: Incomplete
 
-    
+    /*
+        GITHUB TEST
+     */
 
     /**
      * Returns module, which contains a few of YumChart's methods and fields.

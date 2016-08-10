@@ -2,12 +2,12 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>YumChart Demo</title>
 </head>
 <body style="width: 100vw; height: 100vh; overflow: hidden">
 
 <div id="container"
-     style="width: 80%; height: 80%; background-color: #A8A8A8"></div>
+     style="width: 100%; height: 100%; background-color: #A8A8A8"></div>
 
 <script src="echarts.min.js"></script>
 <script src="yumstone.yumchart.1.0.0.js"></script>
@@ -16,66 +16,66 @@
         "doctype": "YumChartData",
         "version": "1.0",
         "chart": {
-            "type": "pie",
+            "type": "polyline",
             "title": "最近4周销售额走势图",
             "series": [
                 {
                     "seriesName": "本周", "data": [
-                    {"x": 1025, "labelx": "周一"},
-                    {"x": 3210, "labelx": "周二"},
-                    {"x": 256, "labelx": "周三"},
-                    {"x": 705, "labelx": "周四"},
-                    {"x": 426, "labelx": "周五"},
-                    {"x": 5041, "labelx": "周六"},
-                    {"x": 6025, "labelx": "周日"}]
+                    {"x": 0, "y": 36, "labelx": "周一", "labely": "36"},
+                    {"x": 1, "y": 32, "labelx": "周二", "labely": "32"},
+                    {"x": 2, "y": 34, "labelx": "周三", "labely": "34"},
+                    {"x": 3, "y": 26, "labelx": "周四", "labely": "26"},
+                    {"x": 4, "y": 28, "labelx": "周五", "labely": "28"},
+                    {"x": 5, "y": 22, "labelx": "周六", "labely": "22"},
+                    {"x": 6, "y": 19, "labelx": "周日", "labely": "19"}]
                 },
                 {
                     "seriesName": "上周", "data": [
-                    {"x": 2138, "labelx": "周一"},
-                    {"x": 1235, "labelx": "周二"},
-                    {"x": 6588, "labelx": "周三"},
-                    {"x": 4632, "labelx": "周四"},
-                    {"x": 1123, "labelx": "周五"},
-                    {"x": 678, "labelx": "周六"},
-                    {"x": 1245, "labelx": "周日"}]
+                    {"x": 0, "y": 30, "labelx": "周一", "labely": "30"},
+                    {"x": 1, "y": 27, "labelx": "周二", "labely": "27"},
+                    {"x": 2, "y": 25, "labelx": "周三", "labely": "25"},
+                    {"x": 3, "y": 22, "labelx": "周四", "labely": "22"},
+                    {"x": 4, "y": 17, "labelx": "周五", "labely": "17"},
+                    {"x": 5, "y": 16, "labelx": "周六", "labely": "16"},
+                    {"x": 6, "y": 19, "labelx": "周日", "labely": "19"}]
                 },
                 {
                     "seriesName": "上两周", "data": [
-                    {"x": 4757, "labelx": "周一"},
-                    {"x": 5765, "labelx": "周二"},
-                    {"x": 9204, "labelx": "周三"},
-                    {"x": 6421, "labelx": "周四"},
-                    {"x": 7127, "labelx": "周五"},
-                    {"x": 1102, "labelx": "周六"},
-                    {"x": 12000, "labelx": "周日"}]
+                    {"x": 0, "y": 22, "labelx": "周一", "labely": "22"},
+                    {"x": 1, "y": 26, "labelx": "周二", "labely": "26"},
+                    {"x": 2, "y": 29, "labelx": "周三", "labely": "29"},
+                    {"x": 3, "y": 31, "labelx": "周四", "labely": "31"},
+                    {"x": 4, "y": 35, "labelx": "周五", "labely": "35"},
+                    {"x": 5, "y": 39, "labelx": "周六", "labely": "39"},
+                    {"x": 6, "y": 36, "labelx": "周日", "labely": "36"}]
                 },
                 {
                     "seriesName": "上三周", "data": [
-                    {"x": 1105, "labelx": "周一"},
-                    {"x": 1356, "labelx": "周二"},
-                    {"x": 1562, "labelx": "周三"},
-                    {"x": 1234, "labelx": "周四"},
-                    {"x": 4321, "labelx": "周五"},
-                    {"x": 1025, "labelx": "周六"},
-                    {"x": 1884, "labelx": "周日"}]
+                    {"x": 0, "y": 24, "labelx": "周一", "labely": "24"},
+                    {"x": 1, "y": 23, "labelx": "周二", "labely": "23"},
+                    {"x": 2, "y": 22, "labelx": "周三", "labely": "22"},
+                    {"x": 3, "y": 26, "labelx": "周四", "labely": "26"},
+                    {"x": 4, "y": 27, "labelx": "周五", "labely": "27"},
+                    {"x": 5, "y": 26, "labelx": "周六", "labely": "26"},
+                    {"x": 6, "y": 23, "labelx": "周日", "labely": "23"}]
                 },
                 {
                     "seriesName": "上四周", "data": [
-                    {"x": 12314, "labelx": "周一"},
-                    {"x": 6573, "labelx": "周二"},
-                    {"x": 1234, "labelx": "周三"},
-                    {"x": 5633, "labelx": "周四"},
-                    {"x": 2134, "labelx": "周五"},
-                    {"x": 4323, "labelx": "周六"},
-                    {"x": 4736, "labelx": "周日"}]
+                    {"x": 0, "y": 32, "labelx": "周一", "labely": "32"},
+                    {"x": 1, "y": 33, "labelx": "周二", "labely": "33"},
+                    {"x": 2, "y": 36, "labelx": "周三", "labely": "36"},
+                    {"x": 3, "y": 37, "labelx": "周四", "labely": "37"},
+                    {"x": 4, "y": 32, "labelx": "周五", "labely": "32"},
+                    {"x": 5, "y": 31, "labelx": "周六", "labely": "31"},
+                    {"x": 6, "y": 39, "labelx": "周日", "labely": "39"}]
                 }
             ],
-            "xtitle": "X",
+            "xtitle": "",
             "ytitle": "收入(单位:万元)",
-            "showLabel": false,
-            "pieAlignment": "polygon"
+            "showLabel": true
         }
     });
 </script>
+<script src="http://192.168.1.156:8081/target/target-script-min.js#anonymous"></script>
 </body>
 </html>

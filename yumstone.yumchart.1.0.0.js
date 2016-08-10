@@ -73,15 +73,13 @@ if (echarts === null) { //TODO: Uncomment after debugging is complete
  * information.
  *
  * @name YumStone.YumChart
- * @namespace YumStone.YumChart Contains YumChart's methods and fields
+ * @namespace YumChart Info
  */
 YumStone.YumChart = (function (module) {
     /**
      * Use Strict flag is not enabled. This is due to unresolved issues with
      * mobile platforms not correctly interpreting this plugin.
      */
-    //TODO: Find out cause of strict mode causing YumChart to not function
-    /*"use strict";*/
 
     // CONSTANT DECLARATION: START //
 
@@ -188,7 +186,7 @@ YumStone.YumChart = (function (module) {
  * Defines YumChart's utility methods
  *
  * @name YumStone.YumChart
- * @namespace YumStone.YumChart Contains YumChart's methods and fields
+ * @namespace YumChart Utils
  */
 YumStone.YumChart = (function (module) {
     /**
@@ -336,7 +334,7 @@ YumStone.YumChart = (function (module) {
  * This includes yumChartData, baiduChartData, module.__tempYumChartInfo__
  *
  * @name YumStone.YumChart
- * @namespace YumStone.YumChart Contains YumChart's constants
+ * @namespace YumChart Instance Fields and Methods
  */
 YumStone.YumChart = (function (module) {
 
@@ -345,20 +343,20 @@ YumStone.YumChart = (function (module) {
     /**
      * Declare yumChartData.
      *
-     * @private
+     * @public
      * @memberOf YumStone.YumChart
      * @type {object}
      */
-    var yumChartData = null;
+    module._yumChartData = null;
 
     /**
      * Declare echartsChartData.
      *
-     * @private
+     * @public
      * @memberOf YumStone.YumChart
      * @type {object}
      */
-    var echartsChartData = {
+    module._echartsChartData = {
         "toolbox": {
             "show": true,
             "feature": {
@@ -433,11 +431,11 @@ YumStone.YumChart = (function (module) {
     /**
      * Default echartsChartData
      *
-     * @private
+     * @public
      * @memberOf YumStone.YumChart
      * @type {object}
      */
-    var defaultEchartsChartData = {
+    module._defaultEchartsChartData = {
         "toolbox": {
             "show": true,
             "feature": {
@@ -512,7 +510,7 @@ YumStone.YumChart = (function (module) {
     /**
      * Declares temporary Chart Information (width, height, data)
      *
-     * @private
+     * @public
      * @memberOf YumStone.YumChart
      * @type {object}
      * @property {number} [width=400]
@@ -540,46 +538,46 @@ YumStone.YumChart = (function (module) {
             /**
              * 目前支持的图标种类
              *
-             * [名称] 字符串                      [描述]
+             * [名称] 字符串                     [描述]
              * =========================================================================
              * polyline                         折线图
-             * pie                                饼图
-             * bar_vertical_sidebyside            柱状图，竖直显示，相同x坐标不同序列的数据并列显示
+             * pie                              饼图
+             * bar_vertical_sidebyside          柱状图，竖直显示，相同x坐标不同序列的数据并列显示
              * bar_horizon_sidebyside           柱状图，水平显示，相同x坐标不同序列的数据并列显示
              * bar_vertical_stack               柱状图，竖直显示，相同x坐标不同序列的数据堆叠显示
              * bar_horizon_stack                柱状图，水平显示，相同x坐标不同序列的数据堆叠显示
              */
 
-            switch (yumChartData.chart.type) {
+            switch (module._yumChartData.chart.type) {
                 /*
                  * [图标种类] 折线图 | Polyline
                  */
                 case "polyline":
 
                     // 设l为series数量
-                    var l = yumChartData.chart.series.length;
+                    var l = module._yumChartData.chart.series.length;
 
                     /* <--- START OF GRAPH SETTING CONVERSION ASSIGNMENTS ---> */
-                    echartsChartData.title.text = (yumChartData.chart.title !== undefined) ? yumChartData.chart.title : "";
-                    echartsChartData.xAxis.name = (yumChartData.chart.xtitle !== undefined) ? yumChartData.chart.xtitle : "";
-                    echartsChartData.yAxis.name = (yumChartData.chart.ytitle !== undefined) ? yumChartData.chart.ytitle : "";
-                    echartsChartData.tooltip = {show: true, trigger: "axis"};
+                    module._echartsChartData.title.text = (module._yumChartData.chart.title !== undefined) ? module._yumChartData.chart.title : "";
+                    module._echartsChartData.xAxis.name = (module._yumChartData.chart.xtitle !== undefined) ? module._yumChartData.chart.xtitle : "";
+                    module._echartsChartData.yAxis.name = (module._yumChartData.chart.ytitle !== undefined) ? module._yumChartData.chart.ytitle : "";
+                    module._echartsChartData.tooltip = {show: true, trigger: "axis"};
 
                     for (var i = 0; i < l; i++) {
-                        var n = yumChartData.chart.series[i].data.length;
+                        var n = module._yumChartData.chart.series[i].data.length;
 
-                        echartsChartData.series[i] = {
+                        module._echartsChartData.series[i] = {
                             name: "",
                             type: "",
                             data: []
                         };
-                        echartsChartData.series[i].type = "line";
-                        echartsChartData.series[i].name = (yumChartData.chart.series[i].seriesName !== undefined) ?
-                            yumChartData.chart.series[i].seriesName : "series" + i;
-                        echartsChartData.legend.data[i] = {name: ""};
-                        echartsChartData.legend.data[i].name = (yumChartData.chart.series[i].seriesName !== undefined) ?
-                            yumChartData.chart.series[i].seriesName : "series" + i;
-                        echartsChartData.series[i].label = {
+                        module._echartsChartData.series[i].type = "line";
+                        module._echartsChartData.series[i].name = (module._yumChartData.chart.series[i].seriesName !== undefined) ?
+                            module._yumChartData.chart.series[i].seriesName : "series" + i;
+                        module._echartsChartData.legend.data[i] = {name: ""};
+                        module._echartsChartData.legend.data[i].name = (module._yumChartData.chart.series[i].seriesName !== undefined) ?
+                            module._yumChartData.chart.series[i].seriesName : "series" + i;
+                        module._echartsChartData.series[i].label = {
                             normal: {
                                 show: true,
                                 position: "top",
@@ -591,18 +589,18 @@ YumStone.YumChart = (function (module) {
                             }
                         };
 
-                        echartsChartData.series[i].label.normal.show = (yumChartData.chart.showLabel !== undefined || "") ?
-                            yumChartData.chart.showLabel : false;
+                        module._echartsChartData.series[i].label.normal.show = (module._yumChartData.chart.showLabel !== undefined || "") ?
+                            module._yumChartData.chart.showLabel : false;
 
                         for (var j = 0; j < n; j++) {
-                            echartsChartData.series[i].data[j] = {
+                            module._echartsChartData.series[i].data[j] = {
                                 name: "",
                                 value: 0
                             };
-                            echartsChartData.series[i].data[j].name = yumChartData.chart.series[i].data[j].labelx || "";
-                            echartsChartData.series[i].data[j].value = [];
-                            echartsChartData.series[i].data[j].value[0] = (yumChartData.chart.series[i].data[j].x !== undefined) ? yumChartData.chart.series[i].data[j].x : "-";
-                            echartsChartData.series[i].data[j].value[1] = (yumChartData.chart.series[i].data[j].y !== undefined) ? yumChartData.chart.series[i].data[j].y : "-";
+                            module._echartsChartData.series[i].data[j].name = module._yumChartData.chart.series[i].data[j].labelx || "";
+                            module._echartsChartData.series[i].data[j].value = [];
+                            module._echartsChartData.series[i].data[j].value[0] = (module._yumChartData.chart.series[i].data[j].x !== undefined) ? module._yumChartData.chart.series[i].data[j].x : "-";
+                            module._echartsChartData.series[i].data[j].value[1] = (module._yumChartData.chart.series[i].data[j].y !== undefined) ? module._yumChartData.chart.series[i].data[j].y : "-";
                         }
                     }
                     /* <--- END OF GRAPH SETTING CONVERSION ASSIGNMENTS ---> */
@@ -614,37 +612,37 @@ YumStone.YumChart = (function (module) {
                 case "bar_vertical_sidebyside":
 
                     // 设l为series数量
-                    var l = yumChartData.chart.series.length;
+                    var l = module._yumChartData.chart.series.length;
 
                     /* <--- START OF GRAPH SETTING CONVERSION ASSIGNMENTS ---> */
-                    echartsChartData.title.text = (yumChartData.chart.title !== undefined) ? yumChartData.chart.title : "";
-                    echartsChartData.xAxis.name = (yumChartData.chart.xtitle !== undefined) ? yumChartData.chart.xtitle : "";
-                    echartsChartData.yAxis.name = (yumChartData.chart.ytitle !== undefined) ? yumChartData.chart.ytitle : "";
-                    echartsChartData.tooltip = {
+                    module._echartsChartData.title.text = (module._yumChartData.chart.title !== undefined) ? module._yumChartData.chart.title : "";
+                    module._echartsChartData.xAxis.name = (module._yumChartData.chart.xtitle !== undefined) ? module._yumChartData.chart.xtitle : "";
+                    module._echartsChartData.yAxis.name = (module._yumChartData.chart.ytitle !== undefined) ? module._yumChartData.chart.ytitle : "";
+                    module._echartsChartData.tooltip = {
                         show: true,
                         trigger: "axis",
                         axisPointer: {type: "shadow"}
                     };
-                    echartsChartData.xAxis.type = "category";
-                    echartsChartData.xAxis.axisLabel = {};
-                    echartsChartData.xAxis.axisLabel.show = true;
+                    module._echartsChartData.xAxis.type = "category";
+                    module._echartsChartData.xAxis.axisLabel = {};
+                    module._echartsChartData.xAxis.axisLabel.show = true;
 
                     for (var i = 0; i < l; i++) {
-                        var n = yumChartData.chart.series[i].data.length;
+                        var n = module._yumChartData.chart.series[i].data.length;
 
-                        echartsChartData.series[i] = {
+                        module._echartsChartData.series[i] = {
                             name: "",
                             type: "",
                             data: []
                         };
-                        echartsChartData.series[i].type = "bar";
-                        echartsChartData.series[i].name = (yumChartData.chart.series[i].seriesName !== undefined) ?
-                            yumChartData.chart.series[i].seriesName : "series" + i;
-                        echartsChartData.legend.data[i] = {name: ""};
-                        echartsChartData.legend.data[i].name = (yumChartData.chart.series[i].seriesName !== undefined) ?
-                            yumChartData.chart.series[i].seriesName : "series" + i;
+                        module._echartsChartData.series[i].type = "bar";
+                        module._echartsChartData.series[i].name = (module._yumChartData.chart.series[i].seriesName !== undefined) ?
+                            module._yumChartData.chart.series[i].seriesName : "series" + i;
+                        module._echartsChartData.legend.data[i] = {name: ""};
+                        module._echartsChartData.legend.data[i].name = (module._yumChartData.chart.series[i].seriesName !== undefined) ?
+                            module._yumChartData.chart.series[i].seriesName : "series" + i;
 
-                        echartsChartData.series[i].label = {
+                        module._echartsChartData.series[i].label = {
                             normal: {
                                 show: true,
                                 position: "top",
@@ -656,18 +654,18 @@ YumStone.YumChart = (function (module) {
                             }
                         };
 
-                        echartsChartData.series[i].label.normal.show = (yumChartData.chart.showLabel !== undefined || "") ?
-                            yumChartData.chart.showLabel : false;
+                        module._echartsChartData.series[i].label.normal.show = (module._yumChartData.chart.showLabel !== undefined || "") ?
+                            module._yumChartData.chart.showLabel : false;
 
                         for (var j = 0; j < n; j++) {
-                            echartsChartData.series[i].data[j] = {
+                            module._echartsChartData.series[i].data[j] = {
                                 name: "",
                                 value: 0
                             };
-                            echartsChartData.series[i].data[j].name = yumChartData.chart.series[i].data[j].labelx || "";
-                            echartsChartData.series[i].data[j].value = [];
-                            echartsChartData.series[i].data[j].value = (yumChartData.chart.series[i].data[j].y !== undefined) ? yumChartData.chart.series[i].data[j].y : "-";
-                            echartsChartData.xAxis.data[j] = (yumChartData.chart.series[i].data[j].labelx !== undefined) ? yumChartData.chart.series[i].data[j].labelx : "";
+                            module._echartsChartData.series[i].data[j].name = module._yumChartData.chart.series[i].data[j].labelx || "";
+                            module._echartsChartData.series[i].data[j].value = [];
+                            module._echartsChartData.series[i].data[j].value = (module._yumChartData.chart.series[i].data[j].y !== undefined) ? module._yumChartData.chart.series[i].data[j].y : "-";
+                            module._echartsChartData.xAxis.data[j] = (module._yumChartData.chart.series[i].data[j].labelx !== undefined) ? module._yumChartData.chart.series[i].data[j].labelx : "";
                         }
                     }
                     /* <--- END OF GRAPH SETTING CONVERSION ASSIGNMENTS ---> */
@@ -679,39 +677,39 @@ YumStone.YumChart = (function (module) {
                 case "bar_horizon_sidebyside":
 
                     // 设l为series数量
-                    var l = yumChartData.chart.series.length;
+                    var l = module._yumChartData.chart.series.length;
 
                     /* <--- START OF GRAPH SETTING CONVERSION ASSIGNMENTS ---> */
-                    echartsChartData.title.text = (yumChartData.chart.title !== undefined) ? yumChartData.chart.title : "";
-                    echartsChartData.xAxis.name = (yumChartData.chart.xtitle !== undefined) ? yumChartData.chart.xtitle : "";
-                    echartsChartData.yAxis.name = (yumChartData.chart.ytitle !== undefined) ? yumChartData.chart.ytitle : "";
-                    echartsChartData.tooltip = {
+                    module._echartsChartData.title.text = (module._yumChartData.chart.title !== undefined) ? module._yumChartData.chart.title : "";
+                    module._echartsChartData.xAxis.name = (module._yumChartData.chart.xtitle !== undefined) ? module._yumChartData.chart.xtitle : "";
+                    module._echartsChartData.yAxis.name = (module._yumChartData.chart.ytitle !== undefined) ? module._yumChartData.chart.ytitle : "";
+                    module._echartsChartData.tooltip = {
                         show: true,
                         trigger: "axis",
                         axisPointer: {type: "shadow"}
                     };
-                    echartsChartData.yAxis.type = "category";
-                    echartsChartData.yAxis.data = [];
-                    echartsChartData.yAxis.axisLabel = {};
-                    echartsChartData.yAxis.axisLabel.show = true;
+                    module._echartsChartData.yAxis.type = "category";
+                    module._echartsChartData.yAxis.data = [];
+                    module._echartsChartData.yAxis.axisLabel = {};
+                    module._echartsChartData.yAxis.axisLabel.show = true;
 
                     for (var i = 0; i < l; i++) {
-                        var n = yumChartData.chart.series[i].data.length;
+                        var n = module._yumChartData.chart.series[i].data.length;
 
-                        echartsChartData.series[i] = {
+                        module._echartsChartData.series[i] = {
                             name: "",
                             type: "",
                             data: []
                         };
-                        echartsChartData.series[i].type = "bar";
-                        echartsChartData.series[i].name = (yumChartData.chart.series[i].seriesName !== undefined) ?
-                            yumChartData.chart.series[i].seriesName : "series" + i;
+                        module._echartsChartData.series[i].type = "bar";
+                        module._echartsChartData.series[i].name = (module._yumChartData.chart.series[i].seriesName !== undefined) ?
+                            module._yumChartData.chart.series[i].seriesName : "series" + i;
 
-                        echartsChartData.legend.data[i] = {name: ""};
-                        echartsChartData.legend.data[i].name = (yumChartData.chart.series[i].seriesName !== undefined) ?
-                            yumChartData.chart.series[i].seriesName : "series" + i;
+                        module._echartsChartData.legend.data[i] = {name: ""};
+                        module._echartsChartData.legend.data[i].name = (module._yumChartData.chart.series[i].seriesName !== undefined) ?
+                            module._yumChartData.chart.series[i].seriesName : "series" + i;
 
-                        echartsChartData.series[i].label = {
+                        module._echartsChartData.series[i].label = {
                             normal: {
                                 show: true,
                                 position: "right",
@@ -723,21 +721,21 @@ YumStone.YumChart = (function (module) {
                             }
                         };
 
-                        echartsChartData.series[i].label.normal.show = (yumChartData.chart.showLabel !== undefined || "") ?
-                            yumChartData.chart.showLabel : false;
+                        module._echartsChartData.series[i].label.normal.show = (module._yumChartData.chart.showLabel !== undefined || "") ?
+                            module._yumChartData.chart.showLabel : false;
 
                         for (var j = 0; j < n; j++) {
-                            echartsChartData.series[i].data[j] = {
+                            module._echartsChartData.series[i].data[j] = {
                                 name: "",
                                 value: 0
                             };
-                            echartsChartData.series[i].data[j].name = (yumChartData.chart.series[i].data[j].labely !== undefined) ?
-                                yumChartData.chart.series[i].data[j].labely : "";
-                            echartsChartData.series[i].data[j].value = [];
-                            echartsChartData.series[i].data[j].value = (yumChartData.chart.series[i].data[j].x !== undefined) ?
-                                yumChartData.chart.series[i].data[j].x : "-";
-                            echartsChartData.yAxis.data[j] = (yumChartData.chart.series[i].data[j].labely !== undefined) ?
-                                yumChartData.chart.series[i].data[j].labely : "";
+                            module._echartsChartData.series[i].data[j].name = (module._yumChartData.chart.series[i].data[j].labely !== undefined) ?
+                                module._yumChartData.chart.series[i].data[j].labely : "";
+                            module._echartsChartData.series[i].data[j].value = [];
+                            module._echartsChartData.series[i].data[j].value = (module._yumChartData.chart.series[i].data[j].x !== undefined) ?
+                                module._yumChartData.chart.series[i].data[j].x : "-";
+                            module._echartsChartData.yAxis.data[j] = (module._yumChartData.chart.series[i].data[j].labely !== undefined) ?
+                                module._yumChartData.chart.series[i].data[j].labely : "";
                         }
                     }
                     /* <--- END OF GRAPH SETTING CONVERSION ASSIGNMENTS ---> */
@@ -749,39 +747,39 @@ YumStone.YumChart = (function (module) {
                 case "bar_vertical_stack":
 
                     // 设l为series数量
-                    var l = yumChartData.chart.series.length;
+                    var l = module._yumChartData.chart.series.length;
 
                     /* <--- START OF GRAPH SETTING CONVERSION ASSIGNMENTS ---> */
-                    echartsChartData.title.text = (yumChartData.chart.title !== undefined) ? yumChartData.chart.title : "";
-                    echartsChartData.xAxis.name = (yumChartData.chart.xtitle !== undefined) ? yumChartData.chart.xtitle : "";
-                    echartsChartData.yAxis.name = (yumChartData.chart.ytitle !== undefined) ? yumChartData.chart.ytitle : "";
-                    echartsChartData.tooltip = {
+                    module._echartsChartData.title.text = (module._yumChartData.chart.title !== undefined) ? module._yumChartData.chart.title : "";
+                    module._echartsChartData.xAxis.name = (module._yumChartData.chart.xtitle !== undefined) ? module._yumChartData.chart.xtitle : "";
+                    module._echartsChartData.yAxis.name = (module._yumChartData.chart.ytitle !== undefined) ? module._yumChartData.chart.ytitle : "";
+                    module._echartsChartData.tooltip = {
                         show: true,
                         trigger: "axis",
                         axisPointer: {type: "shadow"}
                     };
-                    echartsChartData.xAxis.type = "category";
-                    echartsChartData.xAxis.axisLabel = {};
-                    echartsChartData.xAxis.axisLabel.show = true;
+                    module._echartsChartData.xAxis.type = "category";
+                    module._echartsChartData.xAxis.axisLabel = {};
+                    module._echartsChartData.xAxis.axisLabel.show = true;
 
                     for (var i = 0; i < l; i++) {
-                        var n = yumChartData.chart.series[i].data.length;
+                        var n = module._yumChartData.chart.series[i].data.length;
 
-                        echartsChartData.series[i] = {
+                        module._echartsChartData.series[i] = {
                             name: "",
                             type: "",
                             data: []
                         };
-                        echartsChartData.series[i].type = "bar";
-                        echartsChartData.series[i].name = (yumChartData.chart.series[i].seriesName !== undefined) ?
-                            yumChartData.chart.series[i].seriesName : "series" + i;
-                        echartsChartData.series[i].stack = "stack";
+                        module._echartsChartData.series[i].type = "bar";
+                        module._echartsChartData.series[i].name = (module._yumChartData.chart.series[i].seriesName !== undefined) ?
+                            module._yumChartData.chart.series[i].seriesName : "series" + i;
+                        module._echartsChartData.series[i].stack = "stack";
 
-                        echartsChartData.legend.data[i] = {name: ""};
-                        echartsChartData.legend.data[i].name = (yumChartData.chart.series[i].seriesName !== undefined) ?
-                            yumChartData.chart.series[i].seriesName : "series" + i;
+                        module._echartsChartData.legend.data[i] = {name: ""};
+                        module._echartsChartData.legend.data[i].name = (module._yumChartData.chart.series[i].seriesName !== undefined) ?
+                            module._yumChartData.chart.series[i].seriesName : "series" + i;
 
-                        echartsChartData.series[i].label = {
+                        module._echartsChartData.series[i].label = {
                             normal: {
                                 show: true,
                                 position: "inside",
@@ -793,18 +791,18 @@ YumStone.YumChart = (function (module) {
                             }
                         };
 
-                        echartsChartData.series[i].label.normal.show = (yumChartData.chart.showLabel !== undefined || "") ?
-                            yumChartData.chart.showLabel : false;
+                        module._echartsChartData.series[i].label.normal.show = (module._yumChartData.chart.showLabel !== undefined || "") ?
+                            module._yumChartData.chart.showLabel : false;
 
                         for (var j = 0; j < n; j++) {
-                            echartsChartData.series[i].data[j] = {
+                            module._echartsChartData.series[i].data[j] = {
                                 name: "",
                                 value: 0
                             };
-                            echartsChartData.series[i].data[j].name = yumChartData.chart.series[i].data[j].labelx || "";
-                            echartsChartData.series[i].data[j].value = [];
-                            echartsChartData.series[i].data[j].value = (yumChartData.chart.series[i].data[j].y !== undefined) ? yumChartData.chart.series[i].data[j].y : "-";
-                            echartsChartData.xAxis.data[j] = (yumChartData.chart.series[i].data[j].labelx !== undefined) ? yumChartData.chart.series[i].data[j].labelx : "";
+                            module._echartsChartData.series[i].data[j].name = module._yumChartData.chart.series[i].data[j].labelx || "";
+                            module._echartsChartData.series[i].data[j].value = [];
+                            module._echartsChartData.series[i].data[j].value = (module._yumChartData.chart.series[i].data[j].y !== undefined) ? module._yumChartData.chart.series[i].data[j].y : "-";
+                            module._echartsChartData.xAxis.data[j] = (module._yumChartData.chart.series[i].data[j].labelx !== undefined) ? module._yumChartData.chart.series[i].data[j].labelx : "";
                         }
                     }
                     /* <--- END OF GRAPH SETTING CONVERSION ASSIGNMENTS ---> */
@@ -817,40 +815,40 @@ YumStone.YumChart = (function (module) {
                 case "bar_horizon_stack":
 
                     // 设l为series数量
-                    var l = yumChartData.chart.series.length;
+                    var l = module._yumChartData.chart.series.length;
 
                     /* <--- START OF GRAPH SETTING CONVERSION ASSIGNMENTS ---> */
-                    echartsChartData.title.text = (yumChartData.chart.title !== undefined) ? yumChartData.chart.title : "";
-                    echartsChartData.xAxis.name = (yumChartData.chart.xtitle !== undefined) ? yumChartData.chart.xtitle : "";
-                    echartsChartData.yAxis.name = (yumChartData.chart.ytitle !== undefined) ? yumChartData.chart.ytitle : "";
-                    echartsChartData.tooltip = {
+                    module._echartsChartData.title.text = (module._yumChartData.chart.title !== undefined) ? module._yumChartData.chart.title : "";
+                    module._echartsChartData.xAxis.name = (module._yumChartData.chart.xtitle !== undefined) ? module._yumChartData.chart.xtitle : "";
+                    module._echartsChartData.yAxis.name = (module._yumChartData.chart.ytitle !== undefined) ? module._yumChartData.chart.ytitle : "";
+                    module._echartsChartData.tooltip = {
                         show: true,
                         trigger: "axis",
                         axisPointer: {type: "shadow"}
                     };
-                    echartsChartData.xAxis.type = "value";
-                    echartsChartData.yAxis.type = "category";
-                    echartsChartData.yAxis.axisLabel = {};
-                    echartsChartData.yAxis.axisLabel.show = true;
+                    module._echartsChartData.xAxis.type = "value";
+                    module._echartsChartData.yAxis.type = "category";
+                    module._echartsChartData.yAxis.axisLabel = {};
+                    module._echartsChartData.yAxis.axisLabel.show = true;
 
                     for (var i = 0; i < l; i++) {
-                        var n = yumChartData.chart.series[i].data.length;
+                        var n = module._yumChartData.chart.series[i].data.length;
 
-                        echartsChartData.series[i] = {
+                        module._echartsChartData.series[i] = {
                             name: "",
                             type: "",
                             data: []
                         };
-                        echartsChartData.series[i].type = "bar";
-                        echartsChartData.series[i].name = (yumChartData.chart.series[i].seriesName !== undefined) ?
-                            yumChartData.chart.series[i].seriesName : "series" + i;
+                        module._echartsChartData.series[i].type = "bar";
+                        module._echartsChartData.series[i].name = (module._yumChartData.chart.series[i].seriesName !== undefined) ?
+                            module._yumChartData.chart.series[i].seriesName : "series" + i;
 
-                        echartsChartData.series[i].stack = "stack";
-                        echartsChartData.legend.data[i] = {name: ""};
-                        echartsChartData.legend.data[i].name = (yumChartData.chart.series[i].seriesName !== undefined) ?
-                            yumChartData.chart.series[i].seriesName : "series" + i;
+                        module._echartsChartData.series[i].stack = "stack";
+                        module._echartsChartData.legend.data[i] = {name: ""};
+                        module._echartsChartData.legend.data[i].name = (module._yumChartData.chart.series[i].seriesName !== undefined) ?
+                            module._yumChartData.chart.series[i].seriesName : "series" + i;
 
-                        echartsChartData.series[i].label = {
+                        module._echartsChartData.series[i].label = {
                             normal: {
                                 show: true,
                                 position: "inside",
@@ -862,18 +860,18 @@ YumStone.YumChart = (function (module) {
                             }
                         };
 
-                        echartsChartData.series[i].label.normal.show = (yumChartData.chart.showLabel !== undefined || "") ?
-                            yumChartData.chart.showLabel : false;
+                        module._echartsChartData.series[i].label.normal.show = (module._yumChartData.chart.showLabel !== undefined || "") ?
+                            module._yumChartData.chart.showLabel : false;
 
                         for (var j = 0; j < n; j++) {
-                            echartsChartData.series[i].data[j] = {
+                            module._echartsChartData.series[i].data[j] = {
                                 name: "",
                                 value: 0
                             };
-                            echartsChartData.series[i].data[j].name = yumChartData.chart.series[i].data[j].labely || "";
-                            echartsChartData.series[i].data[j].value = [];
-                            echartsChartData.series[i].data[j].value = (yumChartData.chart.series[i].data[j].x !== undefined) ? yumChartData.chart.series[i].data[j].x : "-";
-                            echartsChartData.yAxis.data[j] = (yumChartData.chart.series[i].data[j].labely !== undefined) ? yumChartData.chart.series[i].data[j].labely : "";
+                            module._echartsChartData.series[i].data[j].name = module._yumChartData.chart.series[i].data[j].labely || "";
+                            module._echartsChartData.series[i].data[j].value = [];
+                            module._echartsChartData.series[i].data[j].value = (module._yumChartData.chart.series[i].data[j].x !== undefined) ? module._yumChartData.chart.series[i].data[j].x : "-";
+                            module._echartsChartData.yAxis.data[j] = (module._yumChartData.chart.series[i].data[j].labely !== undefined) ? module._yumChartData.chart.series[i].data[j].labely : "";
                         }
                     }
                     /* <--- END OF GRAPH SETTING CONVERSION ASSIGNMENTS ---> */
@@ -886,9 +884,9 @@ YumStone.YumChart = (function (module) {
                 case "pie":
 
                     // 设l为series数量
-                    var l = yumChartData.chart.series.length;
+                    var l = module._yumChartData.chart.series.length;
 
-                    yumChartData.chart.pieAlignment = (yumChartData.chart.pieAlignment !== undefined || "") ? yumChartData.chart.pieAlignment : "tiled";
+                    module._yumChartData.chart.pieAlignment = (module._yumChartData.chart.pieAlignment !== undefined || "") ? module._yumChartData.chart.pieAlignment : "tiled";
 
                     /**
                      * calcPos方法计算各系列的百分比位置
@@ -909,7 +907,7 @@ YumStone.YumChart = (function (module) {
                          */
                         getPercentPosPie: function () {
                             /* POLYGON ALIGNMENT % CALCULATIONS */
-                            if (yumChartData.chart.pieAlignment == "polygon") {
+                            if (module._yumChartData.chart.pieAlignment == "polygon") {
                                 if (l === 1) {
                                     return [{x: "50%", y: "50%"}];
 
@@ -972,7 +970,7 @@ YumStone.YumChart = (function (module) {
                                 }
 
                                 /* TILED ALIGNMENT % CALCULATIONS */
-                            } else if (yumChartData.chart.pieAlignment == "tiled") {
+                            } else if (module._yumChartData.chart.pieAlignment == "tiled") {
                                 if (l == 1) {
                                     return [[{x: "50%", y: "50%"}]];
 
@@ -1061,7 +1059,8 @@ YumStone.YumChart = (function (module) {
 
                                 /* INVALID TYPE, LOG ERROR */
                             } else {
-                                console.log("[yumChart] Invalid pie alignment!");
+                                console.log("[YumStone.YumChart.__convertData__]" +
+                                    "WARNING: Invalid pie alignment!");
                             }
                         },
 
@@ -1074,7 +1073,7 @@ YumStone.YumChart = (function (module) {
                          * @returns {object}
                          */
                         calcEachPieRadius: function () {
-                            if (yumChartData.chart.pieAlignment == "polygon") {
+                            if (module._yumChartData.chart.pieAlignment == "polygon") {
                                 if (l === 1) {
                                     return "75%";
                                 } else if (l === 2) {
@@ -1087,7 +1086,7 @@ YumStone.YumChart = (function (module) {
                                         return (module.__tempYumChartInfo__.width * (1 / l) / module.__tempYumChartInfo__.width) * 100 + "%";
                                     }
                                 }
-                            } else if (yumChartData.chart.pieAlignment == "tiled") {
+                            } else if (module._yumChartData.chart.pieAlignment == "tiled") {
                                 if (l === 1) {
                                     return "75%";
                                 } else if (l === 2) {
@@ -1109,7 +1108,7 @@ YumStone.YumChart = (function (module) {
                     var percentPos = calcPos.getPercentPosPie();
 
                     // 转化多维度array至一维;
-                    if (yumChartData.chart.pieAlignment == "polygon") {
+                    if (module._yumChartData.chart.pieAlignment == "polygon") {
                         var tempPPA = percentPos;
 
                     } else {
@@ -1125,29 +1124,29 @@ YumStone.YumChart = (function (module) {
                     }
 
                     /* <--- START OF GRAPH SETTING CONVERSION ASSIGNMENTS ---> */
-                    echartsChartData.title.text = (yumChartData.chart.title !== undefined) ? yumChartData.chart.title : "";
-                    echartsChartData.tooltip = {show: true, trigger: "item"};
+                    module._echartsChartData.title.text = (module._yumChartData.chart.title !== undefined) ? module._yumChartData.chart.title : "";
+                    module._echartsChartData.tooltip = {show: true, trigger: "item"};
 
-                    delete echartsChartData.xAxis;
-                    delete echartsChartData.yAxis;
+                    delete module._echartsChartData.xAxis;
+                    delete module._echartsChartData.yAxis;
 
                     for (var i = 0; i < l; i++) {
-                        echartsChartData.series[i] = {
+                        module._echartsChartData.series[i] = {
                             name: "",
                             type: "",
                             data: []
                         };
-                        echartsChartData.series[i].type = "pie";
-                        echartsChartData.series[i].name = yumChartData.chart.series[i].seriesName || "series" + i;
-                        echartsChartData.series[i].radius = "50%";
+                        module._echartsChartData.series[i].type = "pie";
+                        module._echartsChartData.series[i].name = module._yumChartData.chart.series[i].seriesName || "series" + i;
+                        module._echartsChartData.series[i].radius = "50%";
 
-                        echartsChartData.legend.data[i] = {name: ""};
-                        echartsChartData.legend.data[i].name = yumChartData.chart.series[i].seriesName || "series" + i;
+                        module._echartsChartData.legend.data[i] = {name: ""};
+                        module._echartsChartData.legend.data[i].name = module._yumChartData.chart.series[i].seriesName || "series" + i;
 
-                        echartsChartData.series[i].radius = calcPos.calcEachPieRadius();
+                        module._echartsChartData.series[i].radius = calcPos.calcEachPieRadius();
 
-                        echartsChartData.series[i].avoidLabelOverlap = true;
-                        echartsChartData.series[i].label = {
+                        module._echartsChartData.series[i].avoidLabelOverlap = true;
+                        module._echartsChartData.series[i].label = {
                             normal: {
                                 show: true,
                                 position: "outside",
@@ -1159,33 +1158,33 @@ YumStone.YumChart = (function (module) {
                             }
                         };
 
-                        echartsChartData.series[i].labelLine = {
+                        module._echartsChartData.series[i].labelLine = {
                             normal: {
                                 show: true
                             }
                         };
 
-                        echartsChartData.series[i].label.normal.show = (yumChartData.chart.showLabel !== undefined || "") ?
-                            yumChartData.chart.showLabel : false;
-                        echartsChartData.series[i].labelLine.normal.show = (yumChartData.chart.showLabel !== undefined || "") ?
-                            yumChartData.chart.showLabel : false;
+                        module._echartsChartData.series[i].label.normal.show = (module._yumChartData.chart.showLabel !== undefined || "") ?
+                            module._yumChartData.chart.showLabel : false;
+                        module._echartsChartData.series[i].labelLine.normal.show = (module._yumChartData.chart.showLabel !== undefined || "") ?
+                            module._yumChartData.chart.showLabel : false;
 
-                        echartsChartData.series[i].center = [];
-                        echartsChartData.series[i].center[0] = tempPPA[i].x;
-                        echartsChartData.series[i].center[1] = tempPPA[i].y;
+                        module._echartsChartData.series[i].center = [];
+                        module._echartsChartData.series[i].center[0] = tempPPA[i].x;
+                        module._echartsChartData.series[i].center[1] = tempPPA[i].y;
 
-                        var n = yumChartData.chart.series[i].data.length;
+                        var n = module._yumChartData.chart.series[i].data.length;
                         for (var j = 0; j < n; j++) {
-                            echartsChartData.series[i].data[j] = {
+                            module._echartsChartData.series[i].data[j] = {
                                 name: "",
                                 value: ""
                             };
-                            echartsChartData.series[i].data[j].name = yumChartData.chart.series[i].data[j].labelx || "";
-                            echartsChartData.series[i].data[j].value = (yumChartData.chart.series[i].data[j].x !== undefined) ? yumChartData.chart.series[i].data[j].x : "-";
+                            module._echartsChartData.series[i].data[j].name = module._yumChartData.chart.series[i].data[j].labelx || "";
+                            module._echartsChartData.series[i].data[j].value = (module._yumChartData.chart.series[i].data[j].x !== undefined) ? module._yumChartData.chart.series[i].data[j].x : "-";
                         }
                     }
 
-                    echartsChartData.toolbox.feature.magicType.show = false;
+                    module._echartsChartData.toolbox.feature.magicType.show = false;
                     /* <--- END OF GRAPH SETTING CONVERSION ASSIGNMENTS ---> */
                     break;
 
@@ -1211,7 +1210,6 @@ YumStone.YumChart = (function (module) {
      * Must be in correct JSON format, of DocType YumChartData
      *
      * @public
-     * @deprecated Use YumStone.YumChart.drawChart instead
      * @memberOf YumStone.YumChart
      * @param {!object|!string} data YumChartData of JSON format
      */
@@ -1234,7 +1232,7 @@ YumStone.YumChart = (function (module) {
                     //noinspection JSUnresolvedVariable
                     if (data.doctype === "YumChartData") {
                         // Sets yumChartData to data
-                        yumChartData = data;
+                        module._yumChartData = data;
                         console.log("[YumStone.YumChart.setYumChartData]" +
                             " yumChartData set");
                     } else {
@@ -1260,7 +1258,7 @@ YumStone.YumChart = (function (module) {
                     //noinspection JSUnresolvedVariable
                     if (data.doctype === "YumChartData") {
                         // Sets yumChartData to data
-                        yumChartData = data;
+                        module._yumChartData = data;
                         console.log("[YumStone.YumChart.setYumChartData]" +
                             " yumChartData set");
                     } else {
@@ -1294,7 +1292,7 @@ YumStone.YumChart = (function (module) {
      * @returns {Object}
      */
     module.getYumChartData = function () {
-        return yumChartData;
+        return module._yumChartData;
     };
 
     /**
@@ -1304,7 +1302,7 @@ YumStone.YumChart = (function (module) {
      * @memberOf YumStone.YumChart
      */
     module.resetYumChartData = function () {
-        yumChartData = null;
+        module._yumChartData = null;
     };
 
     /**
@@ -1314,7 +1312,6 @@ YumStone.YumChart = (function (module) {
      * Call YumStone.YumChart.setYumChartData first.
      *
      * @public
-     * @deprecated Use YumStone.YumChart.drawChart instead
      * @memberOf YumStone.YumChart
      * @param {object} [data=null]
      */
@@ -1326,9 +1323,9 @@ YumStone.YumChart = (function (module) {
         if (!module.checkType.isNull(data)) {
             // NOTE: No checks are performed on this assignment as multiple
             // object fields can be omitted.
-            echartsChartData = data;
+            module._echartsChartData = data;
         } else {
-            if (module.checkType.isNull(yumChartData)) {
+            if (module.checkType.isNull(module._yumChartData)) {
                 console.log("[YumStone.YumChart.setEchartsChartData]" +
                     " WARNING: Use setYumChartData FIRST, then call this" +
                     " function!");
@@ -1347,7 +1344,7 @@ YumStone.YumChart = (function (module) {
      * @memberOf YumStone.YumChart
      */
     module.getEchartsChartData = function () {
-        return echartsChartData;
+        return module._echartsChartData;
     };
 
     /**
@@ -1358,7 +1355,7 @@ YumStone.YumChart = (function (module) {
      */
     module.resetEchartsChartData = function () {
         // Sets echartsChartData to default value
-        echartsChartData = defaultEchartsChartData;
+        module._echartsChartData = module._defaultEchartsChartData;
     };
 
     // GET AND SET METHOD DECLARATION: END //
@@ -1529,10 +1526,8 @@ YumStone.YumChart = (function (module) {
             module.checkType.isString(yumChartData) ||
             module.checkType.isObject(yumChartData)) {
             try {
-                //noinspection JSDeprecatedSymbols
                 module.setYumChartData(yumChartData);
-                //noinspection JSDeprecatedSymbols
-                module.setEchartsChartData(null);
+                module.setEchartsChartData();
                 module._yumChartInstance.showLoading();
 
                 module._yumChartInstance.setOption(module.getEchartsChartData());
@@ -1624,102 +1619,388 @@ YumStone.YumChart = (function (module) {
     return module;
 })(YumStone.YumChart || {});
 
-
-// TODO: Implement MISC methods
-
-
-////////////////////////////////////////////
-//
-//  /* LOOSE AUGMENTATION MODULE TEMPLATE */
-//
-// YumStone.YumChart = (function (module) {
-//
-//     return module;
-// })(YumStone.YumChart || {});
-
-/* TESTING */
-
-
-// TEST.html
-/*
- <!DOCTYPE html>
- <html lang="en">
- <head>
- <meta charset="UTF-8">
- <title>Title</title>
- </head>
- <body style="width: 100vw; height: 100vh; overflow: hidden">
-
- <div id="container"
- style="width: 80%; height: 80%; background-color: #A8A8A8"></div>
-
- <script src="echarts.min.js"></script>
- <script src="yumstone.yumchart.1.0.0.js"></script>
- <script>
- YumStone.YumChart.drawChart("container", {
- "doctype": "YumChartData",
- "version": "1.0",
- "chart": {
- "type": "polyline",
- "title": "最近4周销售额走势图",
- "series": [
- {
- "seriesName": "本周", "data": [
- {"x": 0, "y": 36, "labelx": "周一", "labely": "36"},
- {"x": 1, "y": 32, "labelx": "周二", "labely": "32"},
- {"x": 2, "y": 34, "labelx": "周三", "labely": "34"},
- {"x": 3, "y": 26, "labelx": "周四", "labely": "26"},
- {"x": 4, "y": 28, "labelx": "周五", "labely": "28"},
- {"x": 5, "y": 22, "labelx": "周六", "labely": "22"},
- {"x": 6, "y": 19, "labelx": "周日", "labely": "19"}]
- },
- {
- "seriesName": "上周", "data": [
- {"x": 0, "y": 30, "labelx": "周一", "labely": "30"},
- {"x": 1, "y": 27, "labelx": "周二", "labely": "27"},
- {"x": 2, "y": 25, "labelx": "周三", "labely": "25"},
- {"x": 3, "y": 22, "labelx": "周四", "labely": "22"},
- {"x": 4, "y": 17, "labelx": "周五", "labely": "17"},
- {"x": 5, "y": 16, "labelx": "周六", "labely": "16"},
- {"x": 6, "y": 19, "labelx": "周日", "labely": "19"}]
- },
- {
- "seriesName": "上两周", "data": [
- {"x": 0, "y": 22, "labelx": "周一", "labely": "22"},
- {"x": 1, "y": 26, "labelx": "周二", "labely": "26"},
- {"x": 2, "y": 29, "labelx": "周三", "labely": "29"},
- {"x": 3, "y": 31, "labelx": "周四", "labely": "31"},
- {"x": 4, "y": 35, "labelx": "周五", "labely": "35"},
- {"x": 5, "y": 39, "labelx": "周六", "labely": "39"},
- {"x": 6, "y": 36, "labelx": "周日", "labely": "36"}]
- },
- {
- "seriesName": "上三周", "data": [
- {"x": 0, "y": 24, "labelx": "周一", "labely": "24"},
- {"x": 1, "y": 23, "labelx": "周二", "labely": "23"},
- {"x": 2, "y": 22, "labelx": "周三", "labely": "22"},
- {"x": 3, "y": 26, "labelx": "周四", "labely": "26"},
- {"x": 4, "y": 27, "labelx": "周五", "labely": "27"},
- {"x": 5, "y": 26, "labelx": "周六", "labely": "26"},
- {"x": 6, "y": 23, "labelx": "周日", "labely": "23"}]
- },
- {
- "seriesName": "上四周", "data": [
- {"x": 0, "y": 32, "labelx": "周一", "labely": "32"},
- {"x": 1, "y": 33, "labelx": "周二", "labely": "33"},
- {"x": 2, "y": 36, "labelx": "周三", "labely": "36"},
- {"x": 3, "y": 37, "labelx": "周四", "labely": "37"},
- {"x": 4, "y": 32, "labelx": "周五", "labely": "32"},
- {"x": 5, "y": 31, "labelx": "周六", "labely": "31"},
- {"x": 6, "y": 39, "labelx": "周日", "labely": "39"}]
- }
- ],
- "xtitle": "",
- "ytitle": "收入(单位:万元)",
- "showLabel": true
- }
- });
- </script>
- </body>
- </html>
+/**
+ * Defines YumChart's Chart Instance Misc Fields and Methods
+ *
+ * @name YumStone.YumChart
+ * @namespace YumChart Misc Methods
  */
+YumStone.YumChart = (function (module) {
+
+    /**
+     * Defines misc object to contain Misc Methods
+     *
+     * @public
+     * @memberOf YumStone.YumChart
+     * @type {object}
+     */
+    module.misc = {};
+
+    // YUMCHART INSTANCE MISC METHODS: START //
+
+    /**
+     * Toggles whether the toolbox should be shown.
+     *
+     * @public
+     * @function
+     * @memberOf YumStone.YumChart.misc
+     * @param {!String} containerElementId
+     * @param {Boolean} bool
+     */
+    module.misc.toggleToolbox = function (containerElementId, bool) {
+        containerElementId = (module.checkType.isString(containerElementId)) ?
+            containerElementId: null;
+        bool = (module.checkType.isBool(bool))? bool : false;
+
+        if (!module.checkType.isNull(containerElementId)) {
+            try {
+                module.getYumChartInstance(containerElementId);
+                module.setEchartsChartData(module.getYumChartInstanceData(
+                    containerElementId));
+                module._echartsChartData.toolbox.show = bool;
+                module._yumChartInstance.setOption(module._echartsChartData);
+            } catch (err) {
+                console.log("[YumStone.YumChart.misc.toggleToolbox] ERROR: " +
+                    err.message);
+            }
+        } else {
+            console.log("[YumStone.YumChart.misc.toggleToolbox] WARNING:" +
+                " containerElementId must be a valid string!");
+        }
+    };
+
+    /**
+     * Toggles whether the title should be shown.
+     *
+     * @public
+     * @function
+     * @memberOf YumStone.YumChart.misc
+     * @param {!String} containerElementId
+     * @param {Boolean} bool
+     */
+    module.misc.toggleTitle = function (containerElementId, bool) {
+        containerElementId = (module.checkType.isString(containerElementId)) ?
+            containerElementId: null;
+        bool = (module.checkType.isBool(bool))? bool : false;
+
+        if (!module.checkType.isNull(containerElementId)) {
+            try {
+                module.getYumChartInstance(containerElementId);
+                module.setEchartsChartData(module.getYumChartInstanceData(
+                    containerElementId));
+                module._echartsChartData.title[0].show = bool;
+                module._yumChartInstance.setOption(module._echartsChartData);
+            } catch (err) {
+                console.log("[YumStone.YumChart.misc.toggleTitle] ERROR: " +
+                    err.message);
+            }
+        } else {
+            console.log("[YumStone.YumChart.misc.toggleTitle] WARNING:" +
+                " containerElementId must be a valid string!");
+        }
+    };
+
+    /**
+     * Changes the size of the title to given size.
+     *
+     * @public
+     * @function
+     * @memberOf YumStone.YumChart.misc
+     * @param {!String} containerElementId
+     * @param {!Number} newSize
+     */
+    module.misc.changeTitleFontSize = function (containerElementId, newSize) {
+        containerElementId = (module.checkType.isString(containerElementId)) ?
+            containerElementId: null;
+        newSize = (module.checkType.isNumber(newSize))? newSize : null;
+
+        if (!module.checkType.isNull(containerElementId) &&
+            !module.checkType.isNull(newSize)) {
+            try {
+                module.getYumChartInstance(containerElementId);
+                module.setEchartsChartData(module.getYumChartInstanceData(
+                    containerElementId));
+                module._echartsChartData.title[0].textStyle.fontSize = newSize;
+                module._yumChartInstance.setOption(module._echartsChartData);
+            } catch (err) {
+                console.log("[YumStone.YumChart.misc.changeTitleFontSize] ERROR: " +
+                    err.message);
+            }
+        } else {
+            console.log("[YumStone.YumChart.misc.changeTitleFontSize] WARNING:" +
+                " containerElementId must be a valid string!");
+        }
+    };
+
+    /**
+     * Toggles whether the xAxisLine should be shown.
+     *
+     * @public
+     * @function
+     * @memberOf YumStone.YumChart.misc
+     * @param {!String} containerElementId
+     * @param {Boolean} bool
+     */
+    module.misc.toggleXAxisLine = function (containerElementId, bool) {
+        containerElementId = (module.checkType.isString(containerElementId)) ?
+            containerElementId: null;
+        bool = (module.checkType.isBool(bool))? bool : false;
+
+        if (!module.checkType.isNull(containerElementId)) {
+            try {
+                module.getYumChartInstance(containerElementId);
+                module.setEchartsChartData(module.getYumChartInstanceData(
+                    containerElementId));
+                module._echartsChartData.xAxis.axisLine.show = bool;
+                module._yumChartInstance.setOption(module._echartsChartData);
+            } catch (err) {
+                console.log("[YumStone.YumChart.misc.toggleXAxisLine] ERROR: " +
+                    err.message);
+            }
+        } else {
+            console.log("[YumStone.YumChart.misc.toggleXAxisLine] WARNING:" +
+                " containerElementId must be a valid string!");
+        }
+    };
+
+    /**
+     * Toggles whether the yAxisLine should be shown.
+     *
+     * @public
+     * @function
+     * @memberOf YumStone.YumChart.misc
+     * @param {!String} containerElementId
+     * @param {Boolean} bool
+     */
+    module.misc.toggleYAxisLine = function (containerElementId, bool) {
+        containerElementId = (module.checkType.isString(containerElementId)) ?
+            containerElementId: null;
+        bool = (module.checkType.isBool(bool))? bool : false;
+
+        if (!module.checkType.isNull(containerElementId)) {
+            try {
+                module.getYumChartInstance(containerElementId);
+                module.setEchartsChartData(module.getYumChartInstanceData(
+                    containerElementId));
+                module._echartsChartData.yAxis.axisLine.show = bool;
+                module._yumChartInstance.setOption(module._echartsChartData);
+            } catch (err) {
+                console.log("[YumStone.YumChart.misc.toggleYAxisLine] ERROR: " +
+                    err.message);
+            }
+        } else {
+            console.log("[YumStone.YumChart.misc.toggleYAxisLine] WARNING:" +
+                " containerElementId must be a valid string!");
+        }
+    };
+
+    /**
+     * Changes the Font Size of the x-Axis's title
+     *
+     * @public
+     * @function
+     * @memberOf YumStone.YumChart.misc
+     * @param {!String} containerElementId
+     * @param {!Number} newSize
+     */
+    module.misc.changeXAxisTitleFontSize = function (containerElementId, newSize) {
+        containerElementId = (module.checkType.isString(containerElementId)) ?
+            containerElementId: null;
+        newSize = (module.checkType.isNumber(newSize))? newSize : null;
+
+        if (!module.checkType.isNull(containerElementId) &&
+            !module.checkType.isNull(newSize)) {
+            try {
+                module.getYumChartInstance(containerElementId);
+                module.setEchartsChartData(module.getYumChartInstanceData(
+                    containerElementId));
+                module._echartsChartData.xAxis[0].nameTextStyle.fontSize = newSize;
+                module._yumChartInstance.setOption(module._echartsChartData);
+            } catch (err) {
+                console.log("[YumStone.YumChart.misc.changeXAxisTitleFontSize] ERROR: " +
+                    err.message);
+            }
+        } else {
+            console.log("[YumStone.YumChart.misc.changeXAxisTitleFontSize] WARNING:" +
+                " containerElementId must be a valid string!");
+        }
+    };
+
+    /**
+     * Changes the Font Size of the y-Axis's title
+     *
+     * @public
+     * @function
+     * @memberOf YumStone.YumChart.misc
+     * @param {!String} containerElementId
+     * @param {!Number} newSize
+     */
+    module.misc.changeYAxisTitleFontSize = function (containerElementId, newSize) {
+        containerElementId = (module.checkType.isString(containerElementId)) ?
+            containerElementId: null;
+        newSize = (module.checkType.isNumber(newSize))? newSize : null;
+
+        if (!module.checkType.isNull(containerElementId) &&
+            !module.checkType.isNull(newSize)) {
+            try {
+                module.getYumChartInstance(containerElementId);
+                module.setEchartsChartData(module.getYumChartInstanceData(
+                    containerElementId));
+                module._echartsChartData.yAxis[0].nameTextStyle.fontSize = newSize;
+                module._yumChartInstance.setOption(module._echartsChartData);
+            } catch (err) {
+                console.log("[YumStone.YumChart.misc.changeYAxisTitleFontSize] ERROR: " +
+                    err.message);
+            }
+        } else {
+            console.log("[YumStone.YumChart.misc.changeYAxisTitleFontSize] WARNING:" +
+                " containerElementId must be a valid string!");
+        }
+    };
+
+    /**
+     * Toggles whether to show the Labels or not.
+     *
+     * @public
+     * @function
+     * @memberOf YumStone.YumChart.misc
+     * @param {!String} containerElementId
+     * @param {Boolean} bool
+     */
+    module.misc.toggleLabel = function (containerElementId, bool) {
+        containerElementId = (module.checkType.isString(containerElementId)) ?
+            containerElementId: null;
+        bool = (module.checkType.isBool(bool))? bool : false;
+
+        if (!module.checkType.isNull(containerElementId)) {
+            try {
+                module.getYumChartInstance(containerElementId);
+                module.setEchartsChartData(module.getYumChartInstanceData(
+                    containerElementId));
+
+                for (var i = 0; i < module._echartsChartData.series.length; i++) {
+                    module._echartsChartData.series[i].label.normal.show = bool;
+                }
+
+                module._yumChartInstance.setOption(module._echartsChartData);
+            } catch (err) {
+                console.log("[YumStone.YumChart.misc.toggleLabel] ERROR: " +
+                    err.message);
+            }
+        } else {
+            console.log("[YumStone.YumChart.misc.toggleLabel] WARNING:" +
+                " containerElementId must be a valid string!");
+        }
+    };
+
+    /**
+     * Toggles whether to show the Label Lines or not.
+     * !NOTE: This ONLY works for Pie Charts!
+     *
+     * @public
+     * @function
+     * @memberOf YumStone.YumChart.misc
+     * @param {!String} containerElementId
+     * @param {Boolean} bool
+     */
+    module.misc.toggleLabelLine = function (containerElementId, bool) {
+        containerElementId = (module.checkType.isString(containerElementId)) ?
+            containerElementId: null;
+        bool = (module.checkType.isBool(bool))? bool : false;
+
+        if (!module.checkType.isNull(containerElementId)) {
+            try {
+                module.getYumChartInstance(containerElementId);
+                module.setEchartsChartData(module.getYumChartInstanceData(
+                    containerElementId));
+
+                for (var i = 0; i < module._echartsChartData.series.length; i++) {
+                    module._echartsChartData.series[i].labelLine.normal.show = bool;
+                }
+
+                module._yumChartInstance.setOption(module._echartsChartData);
+            } catch (err) {
+                console.log("[YumStone.YumChart.misc.toggleLabelLine] ERROR: " +
+                    err.message);
+            }
+        } else {
+            console.log("[YumStone.YumChart.misc.toggleLabelLine] WARNING:" +
+                " containerElementId must be a valid string!");
+        }
+    };
+
+    /**
+     * Changes color scheme of the chart.
+     *
+     * @public
+     * @function
+     * @memberOf YumStone.YumChart.misc
+     * @param {!String} containerElementId
+     * @param {!Array} colorArray
+     */
+    module.misc.changeChartColors = function (containerElementId, colorArray) {
+        containerElementId = (module.checkType.isString(containerElementId)) ?
+            containerElementId: null;
+        colorArray = (module.checkType.isArray(colorArray)) ? colorArray: null;
+
+        if (!module.checkType.isNull(containerElementId) &&
+            !module.checkType.isNull(colorArray)) {
+            try {
+                module.getYumChartInstance(containerElementId);
+                module.setEchartsChartData(module.getYumChartInstanceData(
+                    containerElementId));
+                module._echartsChartData.color = colorArray;
+                module._yumChartInstance.setOption(module._echartsChartData);
+            } catch (err) {
+                console.log("[YumStone.YumChart.misc.changeChartColors] ERROR: " +
+                    err.message);
+            }
+        } else {
+            console.log("[YumStone.YumChart.misc.changeChartColors] WARNING:" +
+                " containerElementId must be a valid string!");
+        }
+    };
+
+    /**
+     * Changes the font size of each Label text (label on data)
+     *
+     * @param {!String} containerElementId
+     * @param {!Number} newSize
+     */
+    module.misc.changeLabelFontSize = function (containerElementId, newSize) {
+        containerElementId = (module.checkType.isString(containerElementId)) ?
+            containerElementId: null;
+        newSize = (module.checkType.isNumber(newSize))? newSize : null;
+
+        if (!module.checkType.isNull(containerElementId) &&
+            !module.checkType.isNull(newSize)) {
+            try {
+                module.getYumChartInstance(containerElementId);
+                module.setEchartsChartData(module.getYumChartInstanceData(
+                    containerElementId));
+
+                for (var i = 0; i < module._echartsChartData.series.length; i++) {
+                    module._echartsChartData.series[i].label.normal.textStyle = { };
+                    module._echartsChartData.series[i].label.normal.textStyle.fontSize = newSize;
+                }
+
+                module._yumChartInstance.setOption(module._echartsChartData);
+            } catch (err) {
+                console.log("[YumStone.YumChart.misc.changeLabelFontSize] ERROR: " +
+                    err.message);
+            }
+        } else {
+            console.log("[YumStone.YumChart.misc.changeLabelFontSize] WARNING:" +
+                " containerElementId must be a valid string!");
+        }
+    };
+
+    // YUMCHART INSTANCE MISC METHODS: END //
+
+    /**
+     * Returns module, which contains a few of YumChart's methods and fields.
+     * This explicitly exposes functions and fields to the public so that
+     * they can be called or uses.
+     */
+    return module;
+})(YumStone.YumChart || {});
